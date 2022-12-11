@@ -163,9 +163,13 @@ function changeTitle(newTitle){
             changeBackground.style.backgroundColor = "red"
         }    }
 
-        // 38) Console log "Page loaded" when the page is correctly loaded
+        // 38) Console log "Page loaded" when the page is correctly loaded (&&)  
         function onLoadAction(){
             console.log("Page Loaded")
+        
+     //41) Add an eventListener to show an alert when the cursor hovers a link, 
+   //displaying its href property
+
             let tags = document.getElementsByTagName("a")
             for(let i = 0; i < tags.length; i++) {
                 tags[i].addEventListener('mouseover', function(event) {
@@ -179,6 +183,17 @@ function changeTitle(newTitle){
             for(let i = 0; i < tdNodes.length; i++) {
                 tdNodes[i].addEventListener("click", changeBackgroundColor)
             }
+
+     // 48) Add automatically a pink border to a cell when the mouse hovers it
+            
+            let mouseoverOnCell = document.getElementsByTagName("td") 
+            for(let i = 0; i < mouseoverOnCell.length; i++){
+                mouseoverOnCell[i].addEventListener("mouseover", function(event){
+                    event.target.style.borderColor = "pink"
+                })
+            }
+            
+        
         }
         
 
@@ -199,11 +214,6 @@ function newItem(newItem){
   }
 
  // EXTRA EXERCISES
-
- //41) Add an eventListener to show an alert when the cursor hovers a link, 
-   //displaying its href property
-    
-
 
  // 42) Create a button that will hide every image on the page when clicked
       function hideImage(){
@@ -248,11 +258,36 @@ function newItem(newItem){
             event.target.style.backgroundColor = "#ff6600"
             
         }
-       // 47) Add a delete button at the bottom of the table, when clicked it should delete a random <td>
-
+ 
         
-       // 48) Add automatically a pink border to a cell when the mouse hovers it
-        //49) Write a function to create a table with 4 rows and 3 columns programmatically and add it to the bottom of the page
+
+
+ //49) Write a function to create a table with 4 rows and 3 columns programmatically and add it to the bottom of the page
+ function tableCreate(row, col){
+    let table = document.getElementById("create-table")
+    let tbl  = document.createElement('table');
+    tbl.style.width  = '1000px';
+    tbl.style.height = "400px"
+    tbl.style.border = '1px solid black';
+
+    for(let i = 0; i < row; i++){
+        let tr = tbl.insertRow();
+        for(let j = 0; j < col; j++){
+                let td = tr.insertCell();
+               
+                td.style.border = '1px solid black';
+            }     
+    }
+    table.appendChild(tbl);
+}
+
+tableCreate(4,3);
+        
        // 50) Write a function to remove the last table from the page
+
+       function removeTable(){
+        let removeTbl = document.getElementById("create-table")
+        removeTbl.remove()
+       }
 
        window.onload = onLoadAction
